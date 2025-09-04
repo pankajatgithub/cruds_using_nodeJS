@@ -1,0 +1,104 @@
+{
+  "info": {
+    "name": "MVVM Notes API",
+    "_postman_id": "mvvm-notes-api-collection",
+    "description": "Postman collection for MVVM Notes API with authentication and notes CRUD.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:3000" },
+    { "key": "token", "value": "<your_jwt_token>" }
+  ],
+  "item": [
+    {
+      "name": "User Register",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "{{base_url}}/users/register", "host": ["{{base_url}}"], "path": ["users", "register"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"testuser\",\n  \"email\": \"test@example.com\",\n  \"password\": \"test123\"\n}"
+        }
+      }
+    },
+    {
+      "name": "User Login",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "{{base_url}}/users/login", "host": ["{{base_url}}"], "path": ["users", "login"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"test123\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Get Quotes",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "{{base_url}}/quotes", "host": ["{{base_url}}"], "path": ["quotes"] }
+      }
+    },
+    {
+      "name": "Hello Route",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "{{base_url}}/hello", "host": ["{{base_url}}"], "path": ["hello"] }
+      }
+    },
+    {
+      "name": "Create Note",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": { "raw": "{{base_url}}/notes", "host": ["{{base_url}}"], "path": ["notes"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Sample Note\",\n  \"description\": \"This is a note.\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Get Notes",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": { "raw": "{{base_url}}/notes", "host": ["{{base_url}}"], "path": ["notes"] }
+      }
+    },
+    {
+      "name": "Update Note",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": { "raw": "{{base_url}}/notes/:id", "host": ["{{base_url}}"], "path": ["notes", ":id"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Updated Note\",\n  \"description\": \"Updated description.\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Delete Note",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": { "raw": "{{base_url}}/notes/:id", "host": ["{{base_url}}"], "path": ["notes", ":id"] }
+      }
+    }
+  ]
+}
