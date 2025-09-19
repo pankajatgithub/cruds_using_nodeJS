@@ -57,7 +57,7 @@ const deleteNote = async(req,res)=>{
 
     try {
 
-     const note = await noteModel.findByIdAndRemove(id);
+     const note = await noteModel.findByIdAndDelete(id);
       console.log(note);
      return res.status(200).json(note)
         
